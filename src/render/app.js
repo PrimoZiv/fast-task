@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 new Vue({
   el: "#app",
   data: {
-    info: "app info"
+    info: "快速任务"
   },
   created() {
     setTimeout(() => {

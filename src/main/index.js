@@ -8,13 +8,18 @@ module.exports = function() {
   // be closed automatically when the JavaScript object is garbage collected.
   let mainWindow;
 
+  app.dock.hide();
+
   function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
+      title: "Fast Task",
       width,
       height,
       frame: false,
-      show: false
+      show: false,
+      opacity: 0.9,
+      backgroundColor: "#111"
     });
 
     // and load the index.html of the app.
@@ -53,8 +58,6 @@ module.exports = function() {
     });
     tray.setToolTip("This is my application.");
     // tray.setContextMenu(contextMenu);
-
-    app.dock.hide();
   }
 
   function showWindow(e, bounds) {

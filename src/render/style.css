@@ -1,0 +1,6 @@
+body {
+  font: caption;
+  -webkit-user-select: none;
+  cursor: default;
+  color: #ccc;
+}

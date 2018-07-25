@@ -5,12 +5,5 @@ new Vue({
   data: {
     info: "app info"
   },
-  created() {
-    setTimeout(() => {
-      ipcRenderer.send("message", "hello");
-    }, 5000);
-    ipcRenderer.on("reply", (event, arg) => {
-      console.log(arg);
-    });
-  }
+  created() {}
 });

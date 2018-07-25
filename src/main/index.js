@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
+const { app, BrowserWindow, Tray } = require("electron");
 const width = 400;
 const height = 600;
 
@@ -7,6 +7,8 @@ module.exports = function() {
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
   let mainWindow;
+
+  app.dock.hide();
 
   function createWindow() {
     // Create the browser window.
@@ -21,7 +23,7 @@ module.exports = function() {
     mainWindow.loadFile("./src/render/index.html");
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.setVisibleOnAllWorkspaces(true);
 
@@ -35,26 +37,9 @@ module.exports = function() {
 
     mainWindow.on("blur", hideWindow);
 
-    ipcMain.on("message", (event, arg) => {
-      console.log(arg);
-      event.sender.send("reply", "reply nothing.");
-    });
-
-    const contextMenu = Menu.buildFromTemplate([
-      { label: "Item1", type: "radio" },
-      { label: "Item2", type: "radio" },
-      { label: "Item3", type: "radio", checked: true },
-      { label: "Item4", type: "radio" }
-    ]);
     const tray = new Tray("./assets/icon.png");
     tray.on("click", showWindow);
-    tray.on("right-click", () => {
-      tray.popUpContextMenu(contextMenu);
-    });
-    tray.setToolTip("This is my application.");
-    // tray.setContextMenu(contextMenu);
-
-    app.dock.hide();
+    tray.setToolTip("Click to open.");
   }
 
   function showWindow(e, bounds) {

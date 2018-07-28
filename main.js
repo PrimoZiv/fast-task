@@ -1,2 +1,2 @@
-const app = require("./src/main/index");
+const app = require("./main/index");
 app();

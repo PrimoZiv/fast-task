@@ -23,7 +23,7 @@ module.exports = function() {
     });
 
     // and load the index.html of the app.
-    mainWindow.loadFile("./src/render/index.html");
+    mainWindow.loadFile("./dist/index.html");
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();

@@ -1,6 +1,6 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
-const width = 400;
+const width = 800;
 const height = 600;
 
 module.exports = function() {
@@ -17,9 +17,7 @@ module.exports = function() {
       width,
       height,
       frame: false,
-      show: false,
-      opacity: 0.9,
-      backgroundColor: "#111"
+      show: false
     });
 
     // and load the index.html of the app.

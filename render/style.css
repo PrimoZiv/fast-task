@@ -3,4 +3,5 @@ body {
   -webkit-user-select: none;
   cursor: default;
   color: #ccc;
+  background-color: #222;
 }

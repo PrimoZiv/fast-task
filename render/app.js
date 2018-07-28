@@ -1,8 +1,12 @@
 const { ipcRenderer } = require("electron");
 import Vue from "vue";
-require("./style.css");
+import iView from "iView";
+import "iview/dist/styles/iview.css";
+import "./style.css";
 
 import App from "./App.vue";
+
+Vue.use(iView);
 
 new Vue({
   el: "#app",

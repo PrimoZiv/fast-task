@@ -8,7 +8,7 @@ function getList() {
 }
 
 function setList(data) {
-  return fs.writeFileSync("./.data/todoList", JSON.stringify(data), "utf8");
+  fs.writeFileSync("./.data/todoList", JSON.stringify(data), "utf8");
 }
 
 function readList(type) {
@@ -18,7 +18,8 @@ function readList(type) {
 function addTodo(data) {
   const list = getList();
   list.push(data);
-  return setList(list);
+  setList(list);
+  return true;
 }
 
 function changeStatus(id) {
@@ -36,13 +37,13 @@ module.exports = function listen() {
   ipcMain.on("message", (e, args) => {
     switch (args.cmd) {
       case "GET_LIST":
-        e.sender.send("reply", readList(args.params));
+        e.returnValue = readList(args.params);
         break;
       case "ADD_TODO":
-        e.sender.send("reply", addTodo(args.params));
+        e.returnValue = addTodo(args.params);
         break;
       case "CHANGE_TODO":
-        e.sender.send("reply", changeStatus(args.params));
+        e.returnValue = changeStatus(args.params);
         break;
     }
   });

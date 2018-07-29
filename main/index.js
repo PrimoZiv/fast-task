@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
 const listen = require("./message");
-const width = 800;
+const width = 400;
 const height = 600;
 
 module.exports = function() {
@@ -17,6 +17,7 @@ module.exports = function() {
       title: "Fast Task",
       width,
       height,
+      resizable: false,
       frame: false,
       show: false
     });

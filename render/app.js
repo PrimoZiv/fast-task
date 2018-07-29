@@ -1,12 +1,13 @@
 import React from "react";
 import TodoList from "./components/todoList";
-import { Menu, Icon, Input } from "semantic-ui-react";
+import AddTodo from "./components/addTodo";
+import { Menu, Icon } from "semantic-ui-react";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addTodo: false,
+      addFlag: false,
       tabs: {
         doing: (
           <React.Fragment>
@@ -27,38 +28,39 @@ class App extends React.Component {
       activeTab: data.name
     });
   };
-  addTodo = e => {
-    e.stopPropagation();
+  toggleTodo = e => {
+    e && e.stopPropagation();
+    const { addFlag } = this.state;
     this.setState({
-      addTodo: true
+      addFlag: !addFlag
     });
   };
   render() {
-    const { activeTab, tabs, addTodo } = this.state;
+    const { activeTab, tabs, addFlag } = this.state;
     const items = Object.keys(tabs).map(t => (
       <Menu.Item key={t} name={t} content={tabs[t]} active={activeTab === t} />
     ));
     items.push(
       <Menu.Item key="add">
-        <div onClick={this.addTodo}>
+        <div onClick={this.toggleTodo}>
           <Icon name="plus" />新增
         </div>
       </Menu.Item>
     );
     return (
       <div className="app">
-        {addTodo ? (
-          <div className="add-wrap">
-            <Input size="big" icon="send" onChange={this.addTodo} />
-          </div>
+        {addFlag ? (
+          <AddTodo onComplete={this.toggleTodo} />
         ) : (
           <div className="list">
-            <Menu
-              pointing
-              secondary
-              items={items}
-              onItemClick={this.changeTab}
-            />
+            <div className="todo-menu">
+              <Menu
+                pointing
+                secondary
+                items={items}
+                onItemClick={this.changeTab}
+              />
+            </div>
             <TodoList type={activeTab} />
           </div>
         )}

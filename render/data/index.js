@@ -3,12 +3,7 @@ const { ipcRenderer } = require("electron");
 const CMD = require("../../constants");
 
 function fetch(cmd, params) {
-  ipcRenderer.send("message", { cmd, params });
-  return new Promise(function(resolve, reject) {
-    ipcRenderer.once("reply", (e, msg) => {
-      resolve(msg);
-    });
-  });
+  return ipcRenderer.sendSync("message", { cmd, params });
 }
 
 export function getList(type) {

@@ -1,30 +1,66 @@
 import React from "react";
-import { getList } from "../data";
+import { getList, changeStatus } from "../data";
+import { Icon } from "semantic-ui-react";
 
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      list: [],
+      hoverStatus: {}
     };
   }
   componentDidMount() {
-    getList(this.props.type).then(list => {
-      this.setState({
-        list
-      });
-    });
+    this.fetchData();
   }
   componentDidUpdate(oldProps) {
-    getList(this.props.type).then(list => {
-      this.setState({
-        list
-      });
+    if (oldProps.type !== this.props.type) {
+      this.fetchData();
+    }
+  }
+  fetchData() {
+    this.setState({
+      list: getList(this.props.type),
+      hoverStatus: {}
     });
   }
+  setHover = (id, status) => {
+    const { hoverStatus } = this.state;
+    hoverStatus[id] = status;
+    this.setState({
+      hoverStatus
+    });
+  };
+  changeStatus = id => {
+    changeStatus(id);
+    this.setState({
+      list: getList(this.props.type)
+    });
+  };
   getListJsx() {
-    const { list } = this.state;
-    return list.map(l => <li key={l.id}>{l.content}</li>);
+    const { list, hoverStatus } = this.state;
+    return list.map(l => (
+      <li
+        className={hoverStatus[l.id] ? "hover" : ""}
+        onMouseEnter={e => {
+          this.setHover(l.id, true);
+        }}
+        onMouseLeave={e => {
+          this.setHover(l.id, false);
+        }}
+        key={l.id}
+      >
+        <div className="todoContent">{l.content}</div>
+        <div
+          className="todoOperation"
+          onClick={e => {
+            this.changeStatus(l.id);
+          }}
+        >
+          <Icon name="check" />
+        </div>
+      </li>
+    ));
   }
   render() {
     const list = this.getListJsx();

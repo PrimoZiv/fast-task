@@ -6,10 +6,12 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "webpack": "webpack --config webpack.render.js --mode development --watch",
+    "test": "electron ./dist",
+    "webpackRender": "webpack --config webpack.render.js --mode development --watch",
+    "webpackMain": "webpack --config webpack.main.js --mode development",
     "buildRender": "webpack --config webpack.render.js --mode production",
     "buildMain": "webpack --config webpack.main.js --mode production",
-    "package": "npm run buildRender && electron-packager . --icon=./assets/icon.icns --extra-resource=./assets/"
+    "package": "npm run buildRender && npm run buildMain && electron-packager ./dist --icon=./assets/icon.icns"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [

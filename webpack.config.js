@@ -6,7 +6,7 @@ const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   target: "electron-renderer",
-  entry: "./render/app.js",
+  entry: "./render/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
@@ -26,6 +26,18 @@ module.exports = {
           limit: 10000,
           name: "./img/[name].[hash:7].[ext]"
         }
+      },
+      {
+        test: /\.(js|jsx)$/,
+        include: path.resolve(__dirname, "render"),
+        use: [
+          {
+            loader: require.resolve("babel-loader"),
+            query: {
+              presets: ["env", "stage-0", "react"]
+            }
+          }
+        ]
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
+const listen = require("./message");
 const width = 800;
 const height = 600;
 
@@ -38,10 +39,7 @@ module.exports = function() {
 
     mainWindow.on("blur", hideWindow);
 
-    ipcMain.on("message", (event, arg) => {
-      console.log(arg);
-      event.sender.send("reply", "reply nothing.");
-    });
+    listen();
 
     const contextMenu = Menu.buildFromTemplate([
       { label: "Item1", type: "radio" },

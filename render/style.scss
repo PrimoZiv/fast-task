@@ -1,0 +1,47 @@
+body {
+  font: caption;
+  -webkit-user-select: none;
+  cursor: default;
+  color: #ccc;
+  background-color: #222;
+}
+.app {
+  height: 100%;
+  padding: 10px;
+}
+.todo-list {
+  height: 100%; 
+  ul, li {
+    list-style: none;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    background: #666;
+    margin-top: 5px;
+    border-radius: 8px;
+  }
+}
+
+/* override */
+
+.ui.secondary.pointing.menu a.item {
+  color: #aaa;
+
+  &.active {
+    color: #eee;
+    border-color: #5cacfb;
+    &:hover {
+      color: #eee;
+      border-color: #5cacfb;
+    }
+  }
+
+  &:hover {
+    color: #ccc;
+  }
+}

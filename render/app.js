@@ -24,6 +24,10 @@ class App extends React.Component {
     };
   }
   changeTab = (e, data) => {
+    const { tabs } = this.state;
+    if (!tabs.hasOwnProperty(data.name)) {
+      return;
+    }
     this.setState({
       activeTab: data.name
     });
@@ -41,8 +45,8 @@ class App extends React.Component {
       <Menu.Item key={t} name={t} content={tabs[t]} active={activeTab === t} />
     ));
     items.push(
-      <Menu.Item key="add">
-        <div onClick={this.toggleTodo}>
+      <Menu.Item key="add" active={false} onClick={this.toggleTodo}>
+        <div>
           <Icon name="plus" />新增
         </div>
       </Menu.Item>

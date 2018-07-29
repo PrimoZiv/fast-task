@@ -39,7 +39,7 @@ class TodoList extends React.Component {
   };
   getListJsx() {
     const { list, hoverStatus } = this.state;
-    return list.map(l => (
+    return list.map((l, index) => (
       <li
         className={hoverStatus[l.id] ? "hover" : ""}
         onMouseEnter={e => {

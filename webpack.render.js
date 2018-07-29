@@ -2,7 +2,6 @@
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   target: "electron-renderer",
@@ -15,10 +14,6 @@ module.exports = {
     rules: [
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
-      {
-        test: /\.vue$/,
-        use: "vue-loader"
-      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: "url-loader",
@@ -49,13 +44,5 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    alias: {
-      vue: "vue/dist/vue.js"
-    }
-  },
-  plugins: [
-    new HtmlWebpackPlugin({ template: "./render/index.html" }),
-    new VueLoaderPlugin()
-  ]
+  plugins: [new HtmlWebpackPlugin({ template: "./render/index.html" })]
 };

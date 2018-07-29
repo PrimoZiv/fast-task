@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require("electron");
 const listen = require("./message");
-const width = 400;
+const width = 350;
 const height = 600;
 
 module.exports = function() {
@@ -26,7 +26,7 @@ module.exports = function() {
     mainWindow.loadFile("./dist/index.html");
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.setVisibleOnAllWorkspaces(true);
 

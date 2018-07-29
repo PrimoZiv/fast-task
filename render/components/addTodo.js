@@ -28,11 +28,16 @@ class AddTodo extends React.Component {
   };
   render() {
     return (
-      <div className="add-wrap">
-        <textarea onChange={this.changeTodo} />
-        <span className="add-btn" onClick={this.addTodo}>
-          <Icon name="paper plane" />
-        </span>
+      <div className="add-container">
+        <div className="add-back-btn" onClick={this.props.onComplete}>
+          <Icon name="chevron left" />列表
+        </div>
+        <div className="add-wrap">
+          <textarea onChange={this.changeTodo} />
+          <span className="add-btn" onClick={this.addTodo}>
+            <Icon name="paper plane" />
+          </span>
+        </div>
       </div>
     );
   }

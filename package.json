@@ -1,12 +1,15 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
+  "name": "fast-task",
+  "productName": "",
+  "version": "0.0.1",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "webpack": "webpack --config webpack.config.js --mode development --watch",
-    "build": "webpack --config webpack.config.js --mode production"
+    "webpack": "webpack --config webpack.render.js --mode development --watch",
+    "buildRender": "webpack --config webpack.render.js --mode production",
+    "buildMain": "webpack --config webpack.main.js --mode production",
+    "package": "npm run buildRender && electron-packager . --icon=./assets/icon.icns --extra-resource=./assets/"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -26,6 +29,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^1.0.0",
     "electron": "^2.0.0",
+    "electron-packager": "^12.1.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.9.2",

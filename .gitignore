@@ -5,3 +5,4 @@ yarn.lock
 .vscode
 dist/
 .data/*
+fast-task-darwin-x64/
